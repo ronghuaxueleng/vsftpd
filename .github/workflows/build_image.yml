@@ -1,0 +1,16 @@
+name: "构建Docker镜像"
+on:
+  workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: 构建Docker镜像
+    steps:
+      - name: docker build and push
+        run: |
+          git clone https://github.com/ronghuaxueleng/vsftpd.git vsftpd
+          cd vsftpd
+          docker build -t ronghuaxueleng/vsftpd .
+          docker login docker.io -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker push ronghuaxueleng/vsftpd
