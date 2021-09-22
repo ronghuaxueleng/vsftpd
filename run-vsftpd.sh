@@ -65,5 +65,7 @@ else
     /usr/bin/ln -sf /dev/stdout $LOG_FILE
 fi
 
+# Run nginx
+nohup nginx &>/dev/null
 # Run vsftpd:
-&>/dev/null /usr/sbin/vsftpd /etc/vsftpd/vsftpd.conf
+nohup /usr/sbin/vsftpd /etc/vsftpd/vsftpd.conf &>/dev/null
